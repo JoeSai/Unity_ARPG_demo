@@ -53,12 +53,13 @@
     <UnityVersion>2020.3.13f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\OutlawController.cs" />
-    <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
-    <Compile Include="Assets\PlayerInput.cs" />
-    <Compile Include="Assets\FSMClearSignals.cs" />
+    <Compile Include="Assets\PaladinController.cs" />
     <Compile Include="Assets\FSMOnEnter.cs" />
     <Compile Include="Assets\FSMOnExit.cs" />
+    <Compile Include="Assets\FSMClearSignals.cs" />
+    <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
+    <Compile Include="Assets\PlayerInput.cs" />
+    <Compile Include="Assets\onGroundSensor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />
