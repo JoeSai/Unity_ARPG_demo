@@ -7,15 +7,18 @@ public class PaladinController : MonoBehaviour
 
     public GameObject model;
     public PlayerInput pi;
-    public float walkSpeed = 1.5f;
+    public float walkSpeed = 2.4f;
     public float runMultiplier = 2.0f;
     public float jumpVelocity = 5.0f;
+    public float rollVelocity = 1.0f;
+    public float jumpBackVelocity = 3.0f;
 
     [SerializeField]
     private Animator anim;
     private Rigidbody rigid;
     private Vector3 movingVec;
-    private Vector3 jumpVec;
+    private Vector3 thrustVec;
+    //private Vector3 rollVec;
     private bool lockMovingVec = false;
 
     // Start is called before the first frame update
@@ -33,6 +36,11 @@ public class PaladinController : MonoBehaviour
         float targetRunMulit = ((pi.run) ? 2.0f : 1.0f);
         anim.SetFloat("forward", Mathf.Lerp(anim.GetFloat("forward"), pi.Dmag * targetRunMulit, t));
 
+        if (rigid.velocity.magnitude > 5.0f)
+        {
+            anim.SetTrigger("roll");
+        }
+
         if (pi.jump)
         {
             anim.SetTrigger("jump");
@@ -44,7 +52,7 @@ public class PaladinController : MonoBehaviour
         }
         if (!lockMovingVec)
         {
-            movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward")>0.9f) ? runMultiplier : 1.0f); ;
+            movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f); ;
         }
     }
 
@@ -52,8 +60,8 @@ public class PaladinController : MonoBehaviour
     {
         //rigid.position += movingVec * Time.fixedDeltaTime;
         //rigid.velocity = movingVec;
-        rigid.velocity = new Vector3(movingVec.x, rigid.velocity.y, movingVec.z) + jumpVec;
-        jumpVec = Vector3.zero;
+        rigid.velocity = new Vector3(movingVec.x, rigid.velocity.y, movingVec.z) + thrustVec;
+        thrustVec = Vector3.zero;
     }
 
     /// <summary>
@@ -61,7 +69,7 @@ public class PaladinController : MonoBehaviour
     /// </summary>
     public void OnJumpEnter()
     {
-        jumpVec = new Vector3(0, jumpVelocity, 0);
+        thrustVec = new Vector3(0, jumpVelocity, 0);
         lockMovingVec = true;
         pi.inputEnable = false;
         //Debug.Log("On JumpEnter");
@@ -89,4 +97,24 @@ public class PaladinController : MonoBehaviour
         lockMovingVec = true;
         pi.inputEnable = false;
     }
+
+    public void OnRollEnter()
+    {
+        thrustVec = new Vector3(0, rollVelocity, 0);
+        lockMovingVec = true;
+        pi.inputEnable = false;
+    }
+
+    public void OnJumpBackEnter()
+    {
+        lockMovingVec = true;
+        pi.inputEnable = false;
+    }
+
+    public void OnJumpBackUpdate()
+    {
+        thrustVec = model.transform.forward * -jumpBackVelocity;
+    }
+
+
 }

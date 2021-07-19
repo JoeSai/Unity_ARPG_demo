@@ -209,6 +209,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &139417674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139417675}
+  m_Layer: 0
+  m_Name: cameraHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139417675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139417674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.547, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 585619295}
+  m_Father: {fileID: 1529455992}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246628073
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +291,8 @@ MonoBehaviour:
   walkSpeed: 2.5
   runMultiplier: 2
   jumpVelocity: 5
+  rollVelocity: 1
+  jumpBackVelocity: 3
   anim: {fileID: 0}
 --- !u!54 &246628076
 Rigidbody:
@@ -312,13 +345,65 @@ MonoBehaviour:
   KeyJump: space
   KeyC: 
   KeyD: 
+  KeyJRight: 
+  KeyJLeft: 
+  KeyJUp: 
+  KeyJDown: 
   run: 0
   jump: 0
   Dup: 0
   Dright: 0
   Dmag: 0
   Dvec: {x: 0, y: 0, z: 0}
+  Jup: 0
+  Jright: 0
   inputEnable: 1
+--- !u!1 &585619294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585619295}
+  - component: {fileID: 585619296}
+  m_Layer: 0
+  m_Name: cameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &585619295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585619294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 139417675}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &585619296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585619294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f29e9dc8ba20245b5cf28134233180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pi: {fileID: 1529455990}
+  horizontalSpeed: 125
+  verticalSpeed: 50
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +495,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &855455639
 PrefabInstance:
@@ -534,7 +619,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 984c271b6c055d64d96304aacbf044cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -654,12 +739,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.14674765, y: -0.020493396, z: 0.0030285593, w: -0.9889571}
-  m_LocalPosition: {x: -9.418455, y: 5.055256, z: -10.507858}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.547, z: -3.587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1509189312
 GameObject:
@@ -807,9 +892,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 15631316}
   pi: {fileID: 0}
-  walkSpeed: 1.5
+  walkSpeed: 2.4
   runMultiplier: 2
   jumpVelocity: 3.5
+  rollVelocity: 3
+  jumpBackVelocity: 2
   anim: {fileID: 0}
 --- !u!114 &1529455990
 MonoBehaviour:
@@ -831,12 +918,18 @@ MonoBehaviour:
   KeyJump: space
   KeyC: 
   KeyD: 
+  KeyJRight: right
+  KeyJLeft: left
+  KeyJUp: up
+  KeyJDown: down
   run: 0
   jump: 0
   Dup: 0
   Dright: 0
   Dmag: 0
   Dvec: {x: 0, y: 0, z: 0}
+  Jup: 0
+  Jright: 0
   inputEnable: 1
 --- !u!136 &1529455991
 CapsuleCollider:
@@ -865,6 +958,7 @@ Transform:
   m_Children:
   - {fileID: 1646169208}
   - {fileID: 15631317}
+  - {fileID: 139417675}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

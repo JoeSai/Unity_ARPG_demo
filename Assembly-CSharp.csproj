@@ -57,9 +57,11 @@
     <Compile Include="Assets\FSMOnEnter.cs" />
     <Compile Include="Assets\FSMOnExit.cs" />
     <Compile Include="Assets\FSMClearSignals.cs" />
+    <Compile Include="Assets\onGroundSensor.cs" />
     <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
     <Compile Include="Assets\PlayerInput.cs" />
-    <Compile Include="Assets\onGroundSensor.cs" />
+    <Compile Include="Assets\FSMOnUpdate.cs" />
+    <Compile Include="Assets\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />
