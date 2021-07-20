@@ -18,6 +18,8 @@ public class PaladinController : MonoBehaviour
     private Rigidbody rigid;
     private Vector3 movingVec;
     private Vector3 thrustVec;
+    private bool canAttack;
+
     //private Vector3 rollVec;
     private bool lockMovingVec = false;
 
@@ -44,6 +46,11 @@ public class PaladinController : MonoBehaviour
         if (pi.jump)
         {
             anim.SetTrigger("jump");
+            canAttack = false;
+        }
+        if (pi.attack && CheckState("ground") && canAttack)
+        {
+            anim.SetTrigger("attack");
         }
         if (pi.Dmag > 0.1f)
         {
@@ -54,6 +61,8 @@ public class PaladinController : MonoBehaviour
         {
             movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f); ;
         }
+
+        print(CheckState("idle", "Attack Layer"));
     }
 
     private void FixedUpdate()
@@ -62,6 +71,13 @@ public class PaladinController : MonoBehaviour
         //rigid.velocity = movingVec;
         rigid.velocity = new Vector3(movingVec.x, rigid.velocity.y, movingVec.z) + thrustVec;
         thrustVec = Vector3.zero;
+    }
+
+    private bool CheckState(string stateName , string layerName = "Base Layer")
+    {
+        int layerIndex = anim.GetLayerIndex(layerName);
+        bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);
+        return result;
     }
 
     /// <summary>
@@ -90,6 +106,7 @@ public class PaladinController : MonoBehaviour
     {
         lockMovingVec = false;
         pi.inputEnable = true;
+        canAttack = true;
     }
 
     public void OnFallEnter()
@@ -116,5 +133,20 @@ public class PaladinController : MonoBehaviour
         thrustVec = model.transform.forward * -jumpBackVelocity;
     }
 
+    public void OnAttack1hAEnter()
+    {
+        pi.inputEnable = false;
+        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 1.0f);
+    }
+
+    public void OnAttackIdleEnter()
+    {
+        pi.inputEnable = true;
+        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 0);
+    }
+
+    public void OnAttack1hAUpdate() {
+        thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
+    }
 
 }

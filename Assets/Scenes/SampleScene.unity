@@ -199,7 +199,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15631316}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4cf481531bb7c59428b5af9a632f142c, type: 3}
+  m_Avatar: {fileID: 9000000, guid: aaf43fb6e7907314e8cd165d8d7b1771, type: 3}
   m_Controller: {fileID: 9100000, guid: 5624bb44aded97649a4da0f720c62f01, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   keyRight: d
   KeyRun: left shift
   KeyJump: space
-  KeyC: 
+  keyAttack: 
   KeyD: 
   KeyJRight: 
   KeyJLeft: 
@@ -351,6 +351,7 @@ MonoBehaviour:
   KeyJDown: 
   run: 0
   jump: 0
+  attack: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -916,7 +917,7 @@ MonoBehaviour:
   keyRight: d
   KeyRun: left shift
   KeyJump: space
-  KeyC: 
+  keyAttack: j
   KeyD: 
   KeyJRight: right
   KeyJLeft: left
@@ -924,6 +925,7 @@ MonoBehaviour:
   KeyJDown: down
   run: 0
   jump: 0
+  attack: 0
   Dup: 0
   Dright: 0
   Dmag: 0

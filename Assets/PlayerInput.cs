@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
 
     public string KeyRun;
     public string KeyJump;
-    public string KeyC;
+    public string keyAttack;
     public string KeyD;
 
     public string KeyJRight;
@@ -24,6 +24,7 @@ public class PlayerInput : MonoBehaviour
     public bool run;
     // 2. trigger once type signal
     public bool jump;
+    public bool attack;
     // 3.double trigger
 
     public float Dup;
@@ -52,8 +53,6 @@ public class PlayerInput : MonoBehaviour
     {
         Jup = (Input.GetKey(KeyJUp) ? 1.0f : 0) - (Input.GetKey(KeyJDown) ? 1.0f : 0);
         Jright = (Input.GetKey(KeyJRight) ? 1.0f : 0) - (Input.GetKey(KeyJLeft) ? 1.0f : 0);
-        print(Jup);
-        print(Jright);
         targetDup = (Input.GetKey(keyUp) ? 1.0f : 0) - (Input.GetKey(keyDown) ? 1.0f : 0);
         targetDright = (Input.GetKey(keyRight) ? 1.0f : 0) - (Input.GetKey(keyLeft) ? 1.0f : 0);
 
@@ -76,6 +75,8 @@ public class PlayerInput : MonoBehaviour
         run = Input.GetKey(KeyRun);
 
         jump = Input.GetKeyDown(KeyJump);
+
+        attack = Input.GetKeyDown(keyAttack);
     }
 
     private Vector2 SquareToCircle(Vector2 input)

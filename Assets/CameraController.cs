@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     private GameObject cameraHandle;
     private float tempEulerX;
     private GameObject model;
-    private GameObject camera;
+    private GameObject gameCamera;
 
     private Vector3 cameraDampVelocity;
     //public float t1;
@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
         playerHandle = cameraHandle.transform.parent.gameObject;
         tempEulerX = 20;
         model = playerHandle.GetComponent<PaladinController>().model;
-        camera = Camera.main.gameObject;
+        gameCamera = Camera.main.gameObject;
         //cameraHandle.transform.eulerAngles = new Vector3(-30, 0, 0);
     }
 
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
         //t1 += 0.01f * Time.fixedDeltaTime;
         //camera.transform.position = Vector3.Lerp(transform.transform.position, transform.position, t1);
 
-        camera.transform.position = Vector3.SmoothDamp(camera.transform.position, transform.position, ref cameraDampVelocity, 0.2f);
-        camera.transform.eulerAngles = transform.eulerAngles;
+        gameCamera.transform.position = Vector3.SmoothDamp(gameCamera.transform.position, transform.position, ref cameraDampVelocity, 0.2f);
+        gameCamera.transform.eulerAngles = transform.eulerAngles;
     }
 }
