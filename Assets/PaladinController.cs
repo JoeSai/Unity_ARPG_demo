@@ -13,12 +13,18 @@ public class PaladinController : MonoBehaviour
     public float rollVelocity = 1.0f;
     public float jumpBackVelocity = 3.0f;
 
-    [SerializeField]
+    [Space(10)]
+    [Header("===== Friction Setting =====")]
+    public PhysicMaterial frictionOne;
+    public PhysicMaterial frictionZeo;
+
     private Animator anim;
     private Rigidbody rigid;
     private Vector3 movingVec;
     private Vector3 thrustVec;
     private bool canAttack;
+    private CapsuleCollider col;
+    private float lerpTarget;
 
     //private Vector3 rollVec;
     private bool lockMovingVec = false;
@@ -29,6 +35,7 @@ public class PaladinController : MonoBehaviour
         pi = GetComponent<PlayerInput>();
         anim = model.GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -62,7 +69,6 @@ public class PaladinController : MonoBehaviour
             movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f); ;
         }
 
-        print(CheckState("idle", "Attack Layer"));
     }
 
     private void FixedUpdate()
@@ -107,6 +113,12 @@ public class PaladinController : MonoBehaviour
         lockMovingVec = false;
         pi.inputEnable = true;
         canAttack = true;
+        col.material = frictionOne;
+    }
+
+    public void OnGroundExit()
+    {
+        col.material = frictionZeo;
     }
 
     public void OnFallEnter()
@@ -136,17 +148,26 @@ public class PaladinController : MonoBehaviour
     public void OnAttack1hAEnter()
     {
         pi.inputEnable = false;
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 1.0f);
+        lerpTarget = 1.0f;
     }
 
     public void OnAttackIdleEnter()
     {
         pi.inputEnable = true;
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), 0);
+        lerpTarget = 0f;
+    }
+
+    private void OnAttackIdleUpdate()
+    {
+        //print(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")));
+        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")), lerpTarget, 0.05f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), currentWeight);
     }
 
     public void OnAttack1hAUpdate() {
         thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
+        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")), lerpTarget, 0.05f);
+        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), currentWeight);
     }
 
 }
