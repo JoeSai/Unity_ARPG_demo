@@ -56,13 +56,17 @@
     <Compile Include="Assets\PaladinController.cs" />
     <Compile Include="Assets\FSMOnEnter.cs" />
     <Compile Include="Assets\CameraController.cs" />
+    <Compile Include="Assets\TriggerControl.cs" />
     <Compile Include="Assets\FSMOnExit.cs" />
+    <Compile Include="Assets\RootMotionControl.cs" />
     <Compile Include="Assets\FSMClearSignals.cs" />
     <Compile Include="Assets\onGroundSensor.cs" />
     <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
-    <Compile Include="Assets\PlayerInput.cs" />
+    <Compile Include="Assets\KeyboardInput.cs" />
     <Compile Include="Assets\FSMOnUpdate.cs" />
-    <Compile Include="Assets\TriggerControl.cs" />
+    <Compile Include="Assets\TesterJoystick.cs" />
+    <Compile Include="Assets\JoystickInput.cs" />
+    <Compile Include="Assets\IUserInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public PlayerInput pi;
+    private IUserInput pi;
     public float horizontalSpeed = 120.0f;
     public float verticalSpeed = 50.0f;
 
@@ -22,7 +22,9 @@ public class CameraController : MonoBehaviour
         cameraHandle = transform.parent.gameObject;
         playerHandle = cameraHandle.transform.parent.gameObject;
         tempEulerX = 20;
-        model = playerHandle.GetComponent<PaladinController>().model;
+        PaladinController pc = playerHandle.GetComponent<PaladinController>();
+        model = pc.model;
+        pi = pc.pi;
         gameCamera = Camera.main.gameObject;
         //cameraHandle.transform.eulerAngles = new Vector3(-30, 0, 0);
     }
@@ -40,6 +42,7 @@ public class CameraController : MonoBehaviour
 
         model.transform.eulerAngles = tempModelEuler;
         //cameraHandle.transform.Rotate(Vector3.right, pi.Jup * -verticalSpeed * Time.fixedDeltaTime);
+        
         //同位角问题？
         //cameraHandle.transform.eulerAngles = new Vector3(Mathf.Clamp(cameraHandle.transform.eulerAngles.x, -40, 30), 0, 0);
         //t1 += 0.01f * Time.fixedDeltaTime;

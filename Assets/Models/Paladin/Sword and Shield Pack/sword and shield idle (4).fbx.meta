@@ -60,8 +60,8 @@ ModelImporter:
       curves: []
       events: []
       transformMask: []
-      maskType: 1
-      maskSource: {fileID: 31900000, guid: dce51756ffd7ee94aaf65b7cc8131fb0, type: 2}
+      maskType: 3
+      maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
