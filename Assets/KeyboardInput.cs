@@ -13,12 +13,18 @@ public class KeyboardInput : IUserInput
     public string KeyRun;
     public string KeyJump;
     public string keyAttack;
-    public string KeyD;
+    public string keyDefense;
 
     public string KeyJRight;
     public string KeyJLeft;
     public string KeyJUp;
     public string KeyJDown;
+
+    [Header("===== Mouser settings =====")]
+    public bool mouseEnable = false;
+    public float mouseSensitivityX = 1.0f;
+    public float mouseSensitivityY = 1.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +35,17 @@ public class KeyboardInput : IUserInput
     // Update is called once per frame
     void Update()
     {
-        Jup = (Input.GetKey(KeyJUp) ? 1.0f : 0) - (Input.GetKey(KeyJDown) ? 1.0f : 0);
-        Jright = (Input.GetKey(KeyJRight) ? 1.0f : 0) - (Input.GetKey(KeyJLeft) ? 1.0f : 0);
+        if(mouseEnable)
+        {
+            Jup = Input.GetAxis("Mouse Y") * 3f *  mouseSensitivityY;
+            Jright = Input.GetAxis("Mouse X") * 2.5f * mouseSensitivityX;
+        }
+        else
+        {
+            Jup = (Input.GetKey(KeyJUp) ? 1.0f : 0) - (Input.GetKey(KeyJDown) ? 1.0f : 0);
+            Jright = (Input.GetKey(KeyJRight) ? 1.0f : 0) - (Input.GetKey(KeyJLeft) ? 1.0f : 0);
+        }
+
         targetDup = (Input.GetKey(keyUp) ? 1.0f : 0) - (Input.GetKey(keyDown) ? 1.0f : 0);
         targetDright = (Input.GetKey(keyRight) ? 1.0f : 0) - (Input.GetKey(keyLeft) ? 1.0f : 0);
 
@@ -55,6 +70,9 @@ public class KeyboardInput : IUserInput
         jump = Input.GetKeyDown(KeyJump);
 
         attack = Input.GetKeyDown(keyAttack);
+
+        defense = Input.GetKey(keyDefense);
+
     }
 
     //private Vector2 SquareToCircle(Vector2 input)

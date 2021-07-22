@@ -10,6 +10,7 @@ public abstract class IUserInput : MonoBehaviour
     // 2. trigger once type signal
     public bool jump;
     public bool attack;
+    public bool defense;
     // 3.double trigger
 
     public float Dup;

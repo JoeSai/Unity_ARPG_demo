@@ -12,6 +12,9 @@ public class PaladinController : MonoBehaviour
     public float jumpVelocity = 5.0f;
     public float rollVelocity = 1.0f;
     public float jumpBackVelocity = 3.0f;
+    public string attackLayerName = "Attack Layer";
+    public float weightVelocity;
+    public float weightVelocity2;
 
     [Space(10)]
     [Header("===== Friction Setting =====")]
@@ -68,6 +71,14 @@ public class PaladinController : MonoBehaviour
         {
             anim.SetTrigger("attack");
         }
+        if (pi.defense && CheckState("ground"))
+        {
+            anim.SetBool("defense" , true);
+        }
+        else
+        {
+            anim.SetBool("defense", false);
+        }
         if (pi.Dmag > 0.1f)
         {
             Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, 0.1f);
@@ -88,6 +99,15 @@ public class PaladinController : MonoBehaviour
         rigid.velocity = new Vector3(movingVec.x, rigid.velocity.y, movingVec.z) + thrustVec;
         thrustVec = Vector3.zero;
         deltaPos = Vector3.zero;
+        //if(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)) <= 0.1f)
+        //{
+        //    anim.SetBool("canAttack", true);
+        //}
+        //else
+        //{
+        //    print(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)));
+        //    anim.SetBool("canAttack", false);
+        //}
     }
 
     private bool CheckState(string stateName , string layerName = "Base Layer")
@@ -170,22 +190,27 @@ public class PaladinController : MonoBehaviour
 
     private void OnAttackIdleUpdate()
     {
-        //print(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")));
-        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")), lerpTarget, 0.05f);
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), currentWeight);
+        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), lerpTarget, 0.05f);
+        //float currentWeight = Mathf.SmoothDamp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), 0, ref weightVelocity, 0.2f);
+        //anim.SetLayerWeight(anim.GetLayerIndex(attackLayerName), currentWeight);
     }
 
     public void OnAttack1hAUpdate() {
         //thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
-        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex("Attack Layer")), lerpTarget, 0.05f);
-        anim.SetLayerWeight(anim.GetLayerIndex("Attack Layer"), currentWeight);
+        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), lerpTarget, 0.2f);
+        //float currentWeight = Mathf.SmoothDamp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), 1, ref weightVelocity2, 0.2f);
+        //anim.SetLayerWeight(anim.GetLayerIndex(attackLayerName), currentWeight);
     }
 
 
     public void OnUpdateRM(Vector3 _deltaPos)
     {
-        if(CheckState("attack1hC" , "Attack Layer")) {
-            deltaPos += _deltaPos;
+        if (CheckState("attack1hC", attackLayerName)) { 
+            deltaPos += (deltaPos + _deltaPos) / 2;
         }
+        //if(CheckState("attack1hD" , attackLayerName) || CheckState("attack1hE", attackLayerName) || CheckState("attack1hF", attackLayerName)) {
+        //    deltaPos += (deltaPos + _deltaPos) / 2;
+        //}
     }
+
 }
