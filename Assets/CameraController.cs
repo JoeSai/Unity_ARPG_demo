@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     private GameObject gameCamera;
 
     private Vector3 cameraDampVelocity;
+
+    public GameObject lockTarget;
     //public float t1;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,8 @@ public class CameraController : MonoBehaviour
         pi = pc.pi;
         gameCamera = Camera.main.gameObject;
         //cameraHandle.transform.eulerAngles = new Vector3(-30, 0, 0);
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -51,5 +55,27 @@ public class CameraController : MonoBehaviour
         gameCamera.transform.position = Vector3.SmoothDamp(gameCamera.transform.position, transform.position, ref cameraDampVelocity, 0.2f);
         //gameCamera.transform.eulerAngles = transform.eulerAngles;
         gameCamera.transform.LookAt(cameraHandle.transform);
+    }
+
+    public void toggleLock()
+    {
+        if(lockTarget == null)
+        {
+            //try to lock
+            Vector3 modelOrigin1 = model.transform.position;
+            Vector3 modelOrigin2 = modelOrigin1 + new Vector3(0, 1, 0);
+            Vector3 boxCenter = modelOrigin2 + model.transform.forward * 5.0f;
+            Collider[] cols = Physics.OverlapBox(boxCenter, new Vector3(0.5f, 0.5f, 5f) , model.transform.rotation , LayerMask.GetMask("Enemy"));
+            foreach(var col in cols)
+            {
+                lockTarget = col.gameObject;
+                break;
+            }
+        }
+        else
+        {
+            //release lock
+            lockTarget = null;
+        }
     }
 }

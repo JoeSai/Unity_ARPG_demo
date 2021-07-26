@@ -65,9 +65,11 @@
     <Compile Include="Assets\JoystickInput.cs" />
     <Compile Include="Assets\IUserInput.cs" />
     <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
+    <Compile Include="Assets\LeftArmAnimFix.cs" />
     <Compile Include="Assets\KeyboardInput.cs" />
     <Compile Include="Assets\FSMOnUpdate.cs" />
-    <Compile Include="Assets\LeftArmAnimFix.cs" />
+    <Compile Include="Assets\MyButton.cs" />
+    <Compile Include="Assets\MyTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />

@@ -11,6 +11,8 @@ public abstract class IUserInput : MonoBehaviour
     public bool jump;
     public bool attack;
     public bool defense;
+    //public bool roll;
+    public bool lockon;
     // 3.double trigger
 
     public float Dup;

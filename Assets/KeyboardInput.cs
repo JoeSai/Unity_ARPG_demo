@@ -12,8 +12,9 @@ public class KeyboardInput : IUserInput
 
     public string KeyRun;
     public string KeyJump;
-    public string keyAttack;
-    public string keyDefense;
+    public string KeyAttack;
+    public string KeyDefense;
+    public string KeyLockon;
 
     public string KeyJRight;
     public string KeyJLeft;
@@ -25,7 +26,7 @@ public class KeyboardInput : IUserInput
     public float mouseSensitivityX = 1.0f;
     public float mouseSensitivityY = 1.0f;
 
-
+    //public MyButton ButtonRun = new MyButton();
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +36,9 @@ public class KeyboardInput : IUserInput
     // Update is called once per frame
     void Update()
     {
-        if(mouseEnable)
+        //ButtonRun.Tick(Input.GetKey(KeyRun));
+
+        if (mouseEnable)
         {
             Jup = Input.GetAxis("Mouse Y") * 3f *  mouseSensitivityY;
             Jright = Input.GetAxis("Mouse X") * 2.5f * mouseSensitivityX;
@@ -69,9 +72,15 @@ public class KeyboardInput : IUserInput
 
         jump = Input.GetKeyDown(KeyJump);
 
-        attack = Input.GetKeyDown(keyAttack);
+        attack = Input.GetKeyDown(KeyAttack);
 
-        defense = Input.GetKey(keyDefense);
+        defense = Input.GetKey(KeyDefense);
+
+        lockon = Input.GetKey(KeyLockon);
+        //roll = 
+
+        //print(ButtonRun.OnPressed && ButtonRun.IsExtending);
+        //print(ButtonRun.lastPressTime + " ----- " + ButtonRun.DoubleClick);
 
     }
 

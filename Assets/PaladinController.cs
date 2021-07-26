@@ -6,6 +6,7 @@ public class PaladinController : MonoBehaviour
 {
 
     public GameObject model;
+    public CameraController camcon;
     public IUserInput pi;
     public float walkSpeed = 2.4f;
     public float runMultiplier = 2.0f;
@@ -57,9 +58,11 @@ public class PaladinController : MonoBehaviour
         float targetRunMulit = ((pi.run) ? 2.0f : 1.0f);
         anim.SetFloat("forward", Mathf.Lerp(anim.GetFloat("forward"), pi.Dmag * targetRunMulit, t));
 
-        if (rigid.velocity.magnitude > 5.0f)
+        //if (pi.roll)
+        if(rigid.velocity.magnitude > 5.0f)
         {
             anim.SetTrigger("roll");
+            canAttack = false;
         }
 
         if (pi.jump)
@@ -86,7 +89,12 @@ public class PaladinController : MonoBehaviour
         }
         if (!lockMovingVec)
         {
-            movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f); ;
+            movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f);
+        }
+
+        if (pi.lockon)
+        {
+            camcon.toggleLock();
         }
 
     }
