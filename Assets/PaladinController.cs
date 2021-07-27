@@ -33,6 +33,7 @@ public class PaladinController : MonoBehaviour
 
     //private Vector3 rollVec;
     private bool lockMovingVec = false;
+    private bool trackDirection = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -56,7 +57,19 @@ public class PaladinController : MonoBehaviour
     {
         float t = pi.run ? 0.01f : 0.03f;
         float targetRunMulit = ((pi.run) ? 2.0f : 1.0f);
-        anim.SetFloat("forward", Mathf.Lerp(anim.GetFloat("forward"), pi.Dmag * targetRunMulit, t));
+
+        if(!camcon.lockState)
+        {
+            anim.SetFloat("forward", Mathf.Lerp(anim.GetFloat("forward"), pi.Dmag * targetRunMulit, t));
+            anim.SetFloat("right", 0);
+        }
+        else
+        {
+            Vector3 localDvec = transform.InverseTransformVector(pi.Dvec);
+            anim.SetFloat("forward", localDvec.z * ((pi.run) ? 2.0f : 1.0f));
+            anim.SetFloat("right", localDvec.x * ((pi.run) ? 2.0f : 1.0f));
+            //anim
+        }
 
         //if (pi.roll)
         if(rigid.velocity.magnitude > 5.0f)
@@ -82,19 +95,39 @@ public class PaladinController : MonoBehaviour
         {
             anim.SetBool("defense", false);
         }
-        if (pi.Dmag > 0.1f)
-        {
-            Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, 0.1f);
-            model.transform.forward = targetForward;
-        }
-        if (!lockMovingVec)
-        {
-            movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f);
-        }
+
 
         if (pi.lockon)
         {
-            camcon.toggleLock();
+            camcon.ToggleLock();
+        }
+
+        if (!camcon.lockState)
+        {
+            if (pi.Dmag > 0.1f)
+            {
+                Vector3 targetForward = Vector3.Slerp(model.transform.forward, pi.Dvec, 0.1f);
+                model.transform.forward = targetForward;
+            }
+            if (!lockMovingVec)
+            {
+                movingVec = pi.Dmag * model.transform.forward * walkSpeed * ((pi.run && anim.GetFloat("forward") > 0.9f) ? runMultiplier : 1.0f);
+            }
+        }
+        else
+        {
+            if (!trackDirection)
+            {
+                transform.forward = transform.forward;
+            }
+            else
+            {
+                transform.forward = movingVec.normalized;
+            }
+            if (!lockMovingVec)
+            {
+                movingVec = pi.Dvec* walkSpeed * ((pi.run ) ? runMultiplier : 1.0f);
+            }
         }
 
     }
@@ -133,6 +166,7 @@ public class PaladinController : MonoBehaviour
         thrustVec = new Vector3(0, jumpVelocity, 0);
         lockMovingVec = true;
         pi.inputEnable = false;
+        trackDirection = true;
         //Debug.Log("On JumpEnter");
     }
 
@@ -153,6 +187,7 @@ public class PaladinController : MonoBehaviour
         pi.inputEnable = true;
         canAttack = true;
         col.material = frictionOne;
+        trackDirection = false;
     }
 
     public void OnGroundExit()
@@ -171,6 +206,7 @@ public class PaladinController : MonoBehaviour
         thrustVec = new Vector3(0, rollVelocity, 0);
         lockMovingVec = true;
         pi.inputEnable = false;
+        trackDirection = true;
     }
 
     public void OnJumpBackEnter()

@@ -76,7 +76,7 @@ public class KeyboardInput : IUserInput
 
         defense = Input.GetKey(KeyDefense);
 
-        lockon = Input.GetKey(KeyLockon);
+        lockon = Input.GetKeyDown(KeyLockon);
         //roll = 
 
         //print(ButtonRun.OnPressed && ButtonRun.IsExtending);
