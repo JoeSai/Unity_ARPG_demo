@@ -31,9 +31,6 @@ public class CameraController : MonoBehaviour
         model = pc.model;
         pi = pc.pi;
         gameCamera = Camera.main.gameObject;
-        //cameraHandle.transform.eulerAngles = new Vector3(-30, 0, 0);
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
 
         lockDot.enabled = false;
         lockState = false;

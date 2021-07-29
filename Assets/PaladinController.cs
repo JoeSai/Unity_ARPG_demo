@@ -28,8 +28,9 @@ public class PaladinController : MonoBehaviour
     private Vector3 thrustVec;
     private bool canAttack;
     private CapsuleCollider col;
-    private float lerpTarget;
+    //private float lerpTarget;
     private Vector3 deltaPos;
+    public bool leftIsShield = true;
 
     //private Vector3 rollVec;
     private bool lockMovingVec = false;
@@ -58,7 +59,7 @@ public class PaladinController : MonoBehaviour
         float t = pi.run ? 0.01f : 0.03f;
         float targetRunMulit = ((pi.run) ? 2.0f : 1.0f);
 
-        if(!camcon.lockState)
+        if (!camcon.lockState)
         {
             anim.SetFloat("forward", Mathf.Lerp(anim.GetFloat("forward"), pi.Dmag * targetRunMulit, t));
             anim.SetFloat("right", 0);
@@ -72,7 +73,7 @@ public class PaladinController : MonoBehaviour
         }
 
         //if (pi.roll)
-        if(rigid.velocity.magnitude > 5.0f)
+        if (rigid.velocity.magnitude > 5.0f)
         {
             anim.SetTrigger("roll");
             canAttack = false;
@@ -83,13 +84,32 @@ public class PaladinController : MonoBehaviour
             anim.SetTrigger("jump");
             canAttack = false;
         }
-        if (pi.attack && CheckState("ground") && canAttack)
+        if (pi.attackR && (CheckState("ground") || CheckStateTag("attack")) && canAttack)
         {
+            anim.SetBool("R0L1", false);
             anim.SetTrigger("attack");
         }
-        if (pi.defense && CheckState("ground"))
+
+        if (pi.attackL && !leftIsShield && (CheckState("ground") || CheckStateTag("attack")) && canAttack)
         {
-            anim.SetBool("defense" , true);
+            anim.SetBool("R0L1", true);
+            anim.SetTrigger("attack");
+        }
+
+        if (leftIsShield)
+        {
+            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 1);
+        }
+        else
+        {
+            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 0);
+        }
+
+
+
+        if (pi.defense && leftIsShield && CheckState("ground"))
+        {
+            anim.SetBool("defense", true);
         }
         else
         {
@@ -126,7 +146,7 @@ public class PaladinController : MonoBehaviour
             }
             if (!lockMovingVec)
             {
-                movingVec = pi.Dvec* walkSpeed * ((pi.run ) ? runMultiplier : 1.0f);
+                movingVec = pi.Dvec * walkSpeed * ((pi.run) ? runMultiplier : 1.0f);
             }
         }
 
@@ -151,10 +171,17 @@ public class PaladinController : MonoBehaviour
         //}
     }
 
-    private bool CheckState(string stateName , string layerName = "Base Layer")
+    private bool CheckState(string stateName, string layerName = "Base Layer")
     {
         int layerIndex = anim.GetLayerIndex(layerName);
         bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);
+        return result;
+    }
+
+    private bool CheckStateTag(string tagName, string layerName = "Base Layer")
+    {
+        int layerIndex = anim.GetLayerIndex(layerName);
+        bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
         return result;
     }
 
@@ -223,38 +250,32 @@ public class PaladinController : MonoBehaviour
     public void OnAttack1hAEnter()
     {
         pi.inputEnable = false;
-        lerpTarget = 1.0f;
     }
 
-    public void OnAttackIdleEnter()
-    {
-        pi.inputEnable = true;
-        lerpTarget = 0f;
-    }
-
-    private void OnAttackIdleUpdate()
-    {
-        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), lerpTarget, 0.05f);
-        //float currentWeight = Mathf.SmoothDamp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), 0, ref weightVelocity, 0.2f);
-        //anim.SetLayerWeight(anim.GetLayerIndex(attackLayerName), currentWeight);
-    }
 
     public void OnAttack1hAUpdate() {
         //thrustVec = model.transform.forward * anim.GetFloat("attack1hAVelocity");
-        float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), lerpTarget, 0.2f);
+        //float currentWeight = Mathf.Lerp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), lerpTarget, 0.2f);
         //float currentWeight = Mathf.SmoothDamp(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)), 1, ref weightVelocity2, 0.2f);
         //anim.SetLayerWeight(anim.GetLayerIndex(attackLayerName), currentWeight);
+    }
+
+    public void OnHitEnter()
+    {
+        pi.inputEnable = false;
+
     }
 
 
     public void OnUpdateRM(Vector3 _deltaPos)
     {
-        if (CheckState("attack1hC", attackLayerName)) { 
-            deltaPos += (deltaPos + _deltaPos) / 2;
-        }
-        //if(CheckState("attack1hD" , attackLayerName) || CheckState("attack1hE", attackLayerName) || CheckState("attack1hF", attackLayerName)) {
+        //if (CheckState("attack1hC", attackLayerName)) { 
         //    deltaPos += (deltaPos + _deltaPos) / 2;
         //}
+        if (CheckState("attack1hD") || CheckState("attack1hE") || CheckState("attack1hF"))
+        {
+            deltaPos += (deltaPos + _deltaPos) / 2;
+        }
     }
 
 }

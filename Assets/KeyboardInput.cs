@@ -72,7 +72,8 @@ public class KeyboardInput : IUserInput
 
         jump = Input.GetKeyDown(KeyJump);
 
-        attack = Input.GetKeyDown(KeyAttack);
+        attackR = Input.GetKeyDown(KeyAttack);
+        attackL = Input.GetKeyDown(KeyDefense);
 
         defense = Input.GetKey(KeyDefense);
 

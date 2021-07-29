@@ -9,7 +9,8 @@ public abstract class IUserInput : MonoBehaviour
     public bool run;
     // 2. trigger once type signal
     public bool jump;
-    public bool attack;
+    public bool attackR;
+    public bool attackL;
     public bool defense;
     //public bool roll;
     public bool lockon;

@@ -50,7 +50,7 @@ public class JoystickInput : IUserInput
 
         jump = Input.GetButtonDown(btnB);
 
-        attack = Input.GetButtonDown(btnC);
+        attackR = Input.GetButtonDown(btnC);
     }
 
     //private Vector2 SquareToCircle(Vector2 input)
