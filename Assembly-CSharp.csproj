@@ -53,27 +53,31 @@
     <UnityVersion>2020.3.13f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\PaladinController.cs" />
-    <Compile Include="Assets\FSMOnEnter.cs" />
-    <Compile Include="Assets\CameraController.cs" />
-    <Compile Include="Assets\TriggerControl.cs" />
-    <Compile Include="Assets\MyButton.cs" />
-    <Compile Include="Assets\FSMOnExit.cs" />
-    <Compile Include="Assets\RootMotionControl.cs" />
-    <Compile Include="Assets\FSMClearSignals.cs" />
-    <Compile Include="Assets\TesterJoystick.cs" />
-    <Compile Include="Assets\onGroundSensor.cs" />
-    <Compile Include="Assets\MyTimer.cs" />
-    <Compile Include="Assets\DummyIUserInput.cs" />
-    <Compile Include="Assets\JoystickInput.cs" />
-    <Compile Include="Assets\IUserInput.cs" />
+    <Compile Include="Assets\Script\WeaponManager.cs" />
+    <Compile Include="Assets\Script\PaladinController.cs" />
+    <Compile Include="Assets\Script\FSMOnEnter.cs" />
+    <Compile Include="Assets\Script\CameraController.cs" />
+    <Compile Include="Assets\Script\ActorManager.cs" />
+    <Compile Include="Assets\Script\TriggerControl.cs" />
+    <Compile Include="Assets\Script\MyButton.cs" />
+    <Compile Include="Assets\Script\TesterHit.cs" />
+    <Compile Include="Assets\Script\FSMOnExit.cs" />
+    <Compile Include="Assets\Script\RootMotionControl.cs" />
+    <Compile Include="Assets\Script\KevinController.cs" />
+    <Compile Include="Assets\Script\FSMClearSignals.cs" />
+    <Compile Include="Assets\Script\TesterJoystick.cs" />
+    <Compile Include="Assets\Script\onGroundSensor.cs" />
+    <Compile Include="Assets\Script\BattleManager.cs" />
+    <Compile Include="Assets\Script\MyTimer.cs" />
+    <Compile Include="Assets\Script\DummyIUserInput.cs" />
+    <Compile Include="Assets\Script\JoystickInput.cs" />
+    <Compile Include="Assets\Script\IUserInput.cs" />
     <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
-    <Compile Include="Assets\LeftArmAnimFix.cs" />
-    <Compile Include="Assets\KeyboardInput.cs" />
-    <Compile Include="Assets\FSMOnUpdate.cs" />
-    <Compile Include="Assets\TesterHit.cs" />
-    <Compile Include="Assets\BattleManager.cs" />
-    <Compile Include="Assets\KevinController.cs" />
+    <Compile Include="Assets\Script\LeftArmAnimFix.cs" />
+    <Compile Include="Assets\Script\KeyboardInput.cs" />
+    <Compile Include="Assets\Script\FSMOnUpdate.cs" />
+    <Compile Include="Assets\Script\WeaponController.cs" />
+    <Compile Include="Assets\Script\Helper\TransformHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />
