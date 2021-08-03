@@ -292,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f88e6f3b67887148b406398e9647c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  am: {fileID: 0}
   weaponColL: {fileID: 0}
   weaponColR: {fileID: 0}
-  am: {fileID: 0}
   whL: {fileID: 0}
   whR: {fileID: 0}
 --- !u!4 &45863832 stripped
@@ -387,10 +387,10 @@ GameObject:
   m_Component:
   - component: {fileID: 110281656}
   - component: {fileID: 110281655}
-  - component: {fileID: 110281653}
   - component: {fileID: 110281652}
   - component: {fileID: 110281654}
   - component: {fileID: 110281657}
+  - component: {fileID: 110281658}
   m_Layer: 8
   m_Name: EnemyHandle
   m_TagString: Untagged
@@ -414,32 +414,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &110281653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110281651}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e29b122ea0c6e4792b33c0450e5fe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 717356385}
-  camcon: {fileID: 1705501699}
-  pi: {fileID: 0}
-  walkSpeed: 2.4
-  runMultiplier: 2
-  jumpVelocity: 3.5
-  rollVelocity: 3
-  jumpBackVelocity: 2
-  attackLayerName: Attack Layer2
-  weightVelocity: 0
-  weightVelocity2: 0
-  frictionOne: {fileID: 13400000, guid: 0b9d94e29637d68409a6567d6509b2c1, type: 2}
-  frictionZeo: {fileID: 13400000, guid: 0c07f6e598c5df64d9188264c0e1b3f0, type: 2}
-  leftIsShield: 1
 --- !u!114 &110281654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110281651}
   m_LocalRotation: {x: -0, y: 0.98817784, z: -0, w: -0.15331225}
-  m_LocalPosition: {x: 0, y: 0, z: 4.87}
+  m_LocalPosition: {x: 1.74, y: 0, z: 5.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484545439}
@@ -509,7 +483,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 717356385}
+  anim: {fileID: 0}
   pi: {fileID: 0}
+  camcon: {fileID: 0}
+--- !u!114 &110281658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110281651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936986ceca885ad4d9aa6c45bc506c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac: {fileID: 0}
+  bm: {fileID: 0}
+  wm: {fileID: 0}
+  sm: {fileID: 0}
 --- !u!1 &139417674
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,8 +676,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 855455640}
-  camcon: {fileID: 0}
+  anim: {fileID: 0}
   pi: {fileID: 0}
+  camcon: {fileID: 0}
   walkSpeed: 2.5
   runMultiplier: 2
   jumpVelocity: 5
@@ -793,8 +786,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484545438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.98817784, z: -0, w: -0.15331225}
+  m_LocalPosition: {x: 0, y: 0, z: 4.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 110281656}
@@ -1101,9 +1094,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f88e6f3b67887148b406398e9647c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  am: {fileID: 0}
   weaponColL: {fileID: 0}
   weaponColR: {fileID: 0}
-  am: {fileID: 0}
   whL: {fileID: 1829725262}
   whR: {fileID: 749066339}
 --- !u!1 &749066339 stripped
@@ -1646,8 +1639,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273880598}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.547, z: 0}
+  m_LocalRotation: {x: -0, y: 0.98817784, z: -0, w: -0.15331225}
+  m_LocalPosition: {x: 0, y: 1.547, z: 4.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1705501700}
@@ -1860,6 +1853,7 @@ GameObject:
   - component: {fileID: 1529455988}
   - component: {fileID: 1529455993}
   - component: {fileID: 1529455994}
+  - component: {fileID: 1529455995}
   m_Layer: 0
   m_Name: PaladinHandle
   m_TagString: Untagged
@@ -1896,8 +1890,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 15631316}
-  camcon: {fileID: 585619296}
+  anim: {fileID: 0}
   pi: {fileID: 0}
+  camcon: {fileID: 585619296}
   walkSpeed: 2.4
   runMultiplier: 2
   jumpVelocity: 3.5
@@ -1947,7 +1942,7 @@ MonoBehaviour:
   KeyJLeft: left
   KeyJUp: up
   KeyJDown: down
-  mouseEnable: 0
+  mouseEnable: 1
   mouseSensitivityX: 1
   mouseSensitivityY: 1
 --- !u!136 &1529455991
@@ -2008,6 +2003,32 @@ MonoBehaviour:
   ac: {fileID: 0}
   bm: {fileID: 0}
   wm: {fileID: 0}
+  sm: {fileID: 0}
+--- !u!114 &1529455995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529455987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12967a426b5a76748863a58a97a36d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  HP: 25
+  HPMax: 15
+  isGround: 0
+  isJump: 0
+  isFall: 0
+  isJab: 0
+  isRoll: 0
+  isAttack: 0
+  isHit: 0
+  isDie: 0
+  isBlocked: 0
+  isDefense: 0
 --- !u!1 &1646169207
 GameObject:
   m_ObjectHideFlags: 0

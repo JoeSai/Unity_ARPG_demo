@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KevinController : MonoBehaviour
+public class KevinController : IRoleController
 {
-    public GameObject model;
-    public IUserInput pi;
-    private Animator anim; 
     void Awake()
     {
         IUserInput[] inputs = GetComponents<IUserInput>();

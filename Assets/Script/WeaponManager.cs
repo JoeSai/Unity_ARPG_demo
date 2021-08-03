@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : IActorManagerInterface
 {
     public Collider weaponColL;
     public Collider weaponColR;
-    public ActorManager am;
 
     public GameObject whL;
     public GameObject whR;
@@ -26,17 +25,36 @@ public class WeaponManager : MonoBehaviour
         weaponColL = whL.GetComponentInChildren<Collider>();
         weaponColR = whR.GetComponentInChildren<Collider>();
         //transform.hihi();
+        //print(am.ac.GetType());
     }
 
     public void WeaponEnable()
     {
+        if(am.ac.GetType() == typeof(PaladinController))
+        {
+            if (am.ac.CheckStateTag("attackL"))
+            {
+                weaponColL.enabled = true;
+            }
+            else if(am.ac.CheckStateTag("attackR"))
+            {
+                weaponColR.enabled = true;
+            }
+        }
+        else if(am.ac.GetType() == typeof(KevinController))
+        {
+            weaponColR.enabled = true;
+        }
+        //¿˚”√CheckStateTag≈–∂œ◊Û”“ ÷
+        //if(am.ac)
         //print("WeaponEnable");
-        weaponColR.enabled = true;
+   
     }
 
     public void WeaponDisable()
     {
         //print("WeaponDisable");
+        weaponColL.enabled = false;
         weaponColR.enabled = false;
     }
 }

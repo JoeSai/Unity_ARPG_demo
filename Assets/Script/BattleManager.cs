@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
-public class BattleManager : MonoBehaviour
+public class BattleManager : IActorManagerInterface
 {
-    public ActorManager am;
     private CapsuleCollider defCol;
     // Start is called before the first frame update
     void Start()
@@ -26,10 +25,10 @@ public class BattleManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        print(col.name);
-        if(col.tag == "Weapon")
+        //print(col.name);
+        if (col.tag == "Weapon")
         {
-            am.DoDamage();
+            am.TryDoDamage();
         }
     }
 

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaladinController : MonoBehaviour
+public class PaladinController : IRoleController
 {
 
-    public GameObject model;
-    public CameraController camcon;
-    public IUserInput pi;
+    //public GameObject model;
     public float walkSpeed = 2.4f;
     public float runMultiplier = 2.0f;
     public float jumpVelocity = 5.0f;
@@ -22,7 +20,6 @@ public class PaladinController : MonoBehaviour
     public PhysicMaterial frictionOne;
     public PhysicMaterial frictionZeo;
 
-    private Animator anim;
     private Rigidbody rigid;
     private Vector3 movingVec;
     private Vector3 thrustVec;
@@ -107,7 +104,7 @@ public class PaladinController : MonoBehaviour
 
 
 
-        if (pi.defense && leftIsShield && CheckState("ground"))
+        if (pi.defense && leftIsShield && (CheckState("ground") || CheckState("blocked")))
         {
             anim.SetBool("defense", true);
         }
@@ -169,20 +166,6 @@ public class PaladinController : MonoBehaviour
         //    print(anim.GetLayerWeight(anim.GetLayerIndex(attackLayerName)));
         //    anim.SetBool("canAttack", false);
         //}
-    }
-
-    private bool CheckState(string stateName, string layerName = "Base Layer")
-    {
-        int layerIndex = anim.GetLayerIndex(layerName);
-        bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsName(stateName);
-        return result;
-    }
-
-    private bool CheckStateTag(string tagName, string layerName = "Base Layer")
-    {
-        int layerIndex = anim.GetLayerIndex(layerName);
-        bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
-        return result;
     }
 
     /// <summary>
@@ -266,6 +249,24 @@ public class PaladinController : MonoBehaviour
         movingVec = Vector3.zero;
     }
 
+    public void OnBlockedEnter()
+    {
+        pi.inputEnable = false;
+        thrustVec = model.transform.forward * -jumpBackVelocity;
+    }
+
+    public void OnBlockedUpdate()
+    {
+        // ·ÀÓù»÷ÍË³åÁ¿
+        thrustVec = model.transform.forward * -1.5f;
+    }
+
+    public void OnDieEnter()
+    {
+        pi.inputEnable = false;
+        movingVec = Vector3.zero;
+    }
+
 
     public void OnUpdateRM(Vector3 _deltaPos)
     {
@@ -278,8 +279,5 @@ public class PaladinController : MonoBehaviour
         }
     }
 
-    public void IssueTrigger(string triggerName)
-    {
-        anim.SetTrigger(triggerName);
-    }
+
 }
