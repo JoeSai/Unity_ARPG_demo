@@ -41,11 +41,25 @@ public class ActorManager : MonoBehaviour
         
     }
 
-
-    public void TryDoDamage()
+    public void SetIsCounterBack(bool value)
     {
+        sm.isCounterBackEnable = value;
+    }
 
-        if (sm.isImmortal)
+    public void TryDoDamage(WeaponController targetWc)
+    {
+        if (sm.isCounterBackSuccess)
+        {
+            // do nothing
+            // 对方被震击
+            targetWc.wm.am.Stuuned();
+        }
+        // 盾防失败
+        else if(sm.isCounterBackFailure)
+        {
+            HirOrDie(false);
+        }
+        else if (sm.isImmortal)
         {
             
         }else if (sm.isDefense)
@@ -55,23 +69,37 @@ public class ActorManager : MonoBehaviour
         }
         else
         {
-            if (sm.HP <= 0)
+            HirOrDie(true);
+        }
+    }
+    public void HirOrDie(bool doHitAnimation)
+    {
+        if (sm.HP <= 0)
+        {
+            // Already dead.
+        }
+        else
+        {
+            sm.AddHP(-5);
+            if (sm.HP > 0)
             {
-                // Already dead.
-            }
-            else
-            {
-                sm.AddHP(-5);
-                if (sm.HP > 0)
+                if (doHitAnimation)
                 {
                     Hit();
                 }
-                else
-                {
-                    Die();
-                }
+                //特效
+                //do some vfx , like splatter blood...
+
+            }
+            else
+            {
+                Die();
             }
         }
+    }
+    public void Stuuned()
+    {
+        ac.IssueTrigger("stunned");
     }
 
     public void Blocked()

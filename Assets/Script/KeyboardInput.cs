@@ -15,6 +15,8 @@ public class KeyboardInput : IUserInput
     public string KeyAttack;
     public string KeyDefense;
     public string KeyLockon;
+    public string KeyFu; //组合按键
+    public string KeyCounterBack; // 盾反
 
     public string KeyJRight;
     public string KeyJLeft;
@@ -78,6 +80,10 @@ public class KeyboardInput : IUserInput
         defense = Input.GetKey(KeyDefense);
 
         lockon = Input.GetKeyDown(KeyLockon);
+
+        fn = Input.GetKey(KeyFu);
+
+        counterBack = Input.GetKey(KeyCounterBack);
         //roll = 
 
         //print(ButtonRun.OnPressed && ButtonRun.IsExtending);

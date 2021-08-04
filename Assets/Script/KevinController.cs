@@ -39,6 +39,7 @@ public class KevinController : IRoleController
 
     void OnAttackExit()
     {
+        //可能还需要增加 WeaponDisable 的设置 [P26]
         model.SendMessage("WeaponDisable");
     }
 }

@@ -93,23 +93,20 @@ public class PaladinController : IRoleController
             anim.SetTrigger("attack");
         }
 
-        if (leftIsShield)
+        //¶Ü·´
+        if(pi.counterBack && leftIsShield && CheckState("ground"))
         {
-            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 1);
+            anim.SetTrigger("counterBack");
         }
-        else
-        {
-            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 0);
-        }
-
-
 
         if (pi.defense && leftIsShield && (CheckState("ground") || CheckState("blocked")))
         {
+            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 1);
             anim.SetBool("defense", true);
         }
         else
         {
+            anim.SetLayerWeight(anim.GetLayerIndex("Defense Layer"), 0);
             anim.SetBool("defense", false);
         }
 
@@ -267,6 +264,17 @@ public class PaladinController : IRoleController
         movingVec = Vector3.zero;
     }
 
+    public void OnStunnedEnter()
+    {
+        pi.inputEnable = false;
+        movingVec = Vector3.zero;
+    }
+
+    public void OnCounterBackEnter()
+    {
+        pi.inputEnable = false;
+        movingVec = Vector3.zero;
+    }
 
     public void OnUpdateRM(Vector3 _deltaPos)
     {

@@ -72,22 +72,40 @@ ModelImporter:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.9160732
-            value: 0.28999442
-            inSlope: -2.3290815
-            outSlope: -2.3290815
+            time: 0.88307446
+            value: 0.7194804
+            inSlope: -0.85723764
+            outSlope: -0.85723764
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 0.47007954
+            outWeight: 1
           - serializedVersion: 3
-            time: 0.99845964
-            value: 0.005169086
-            inSlope: -2.8284676
-            outSlope: -2.8284676
+            time: 0.9550464
+            value: 0.52938455
+            inSlope: -4.9854965
+            outSlope: -4.9854965
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.015512168
+            inWeight: 0.33333334
+            outWeight: 0.56647724
+          - serializedVersion: 3
+            time: 0.98072475
+            value: 0.2998052
+            inSlope: -11.174598
+            outSlope: -11.174598
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.6712869
+          - serializedVersion: 3
+            time: 0.9998653
+            value: 0.007625102
+            inSlope: -15.068965
+            outSlope: -15.068965
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.5124308
             outWeight: 0
           preInfinity: 2
           postInfinity: 2

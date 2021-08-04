@@ -14,6 +14,8 @@ public abstract class IUserInput : MonoBehaviour
     public bool defense;
     //public bool roll;
     public bool lockon;
+    public bool fn;
+    public bool counterBack;
     // 3.double trigger
 
     public float Dup;

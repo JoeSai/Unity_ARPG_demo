@@ -10,6 +10,9 @@ public class WeaponManager : IActorManagerInterface
     public GameObject whL;
     public GameObject whR;
 
+    public WeaponController wcL;
+    public WeaponController wcR;
+
     private void Start()
     {
         //print(transform.DeepFind("WeaponHandleR"));
@@ -24,8 +27,24 @@ public class WeaponManager : IActorManagerInterface
 
         weaponColL = whL.GetComponentInChildren<Collider>();
         weaponColR = whR.GetComponentInChildren<Collider>();
+
+
+        wcL = BindWeaponController(whL);
+        wcR = BindWeaponController(whR);
         //transform.hihi();
         //print(am.ac.GetType());
+    }
+
+    public WeaponController BindWeaponController(GameObject targetObj)
+    {
+        WeaponController tempWc;
+        tempWc = targetObj.GetComponent<WeaponController>();
+        if(tempWc == null)
+        {
+            tempWc = targetObj.AddComponent<WeaponController>();
+        }
+        tempWc.wm = this;
+        return tempWc;
     }
 
     public void WeaponEnable()
@@ -56,5 +75,15 @@ public class WeaponManager : IActorManagerInterface
         //print("WeaponDisable");
         weaponColL.enabled = false;
         weaponColR.enabled = false;
+    }
+
+    public void CounterBackEnable()
+    {
+        am.SetIsCounterBack(true);
+    }
+
+    public void CounterBackDisable()
+    {
+        am.SetIsCounterBack(false);
     }
 }

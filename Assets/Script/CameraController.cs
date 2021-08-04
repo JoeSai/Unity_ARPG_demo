@@ -79,11 +79,20 @@ public class CameraController : MonoBehaviour
             lockDot.rectTransform.position = Camera.main.WorldToScreenPoint(lockTarget.obj.transform.position + new Vector3(0, lockTarget.halfHeight, 0));
             if(Vector3.Distance(model.transform.position , lockTarget.obj.transform.position) > 10.0f)
             {
-                lockTarget = null;
-                lockDot.enabled = false;
-                lockState = false;
+                ClearLockTarget();
+            }
+            if (lockTarget.am && lockTarget.am.sm.isDie)
+            {
+                ClearLockTarget();
             }
         }
+    }
+
+    public void ClearLockTarget()
+    {
+        lockTarget = null;
+        lockDot.enabled = false;
+        lockState = false;
     }
 
     public void ToggleLock()
@@ -97,9 +106,7 @@ public class CameraController : MonoBehaviour
 
         if (cols.Length == 0)
         {
-            lockTarget = null;
-            lockDot.enabled = false;
-            lockState = false;
+            ClearLockTarget();
         }
         else
         {
@@ -107,9 +114,7 @@ public class CameraController : MonoBehaviour
             {     
                 if (lockTarget != null && lockTarget.obj == col.gameObject)
                 {
-                    lockTarget = null;
-                    lockDot.enabled = false;
-                    lockState = false;
+                    ClearLockTarget();
                     break;
                 }
                 lockTarget = new LockTarget(col.gameObject , col.bounds.extents.y);
@@ -125,11 +130,13 @@ public class CameraController : MonoBehaviour
     {
         public GameObject obj;
         public float halfHeight;
+        public ActorManager am;
 
         public LockTarget(GameObject _obj , float _halfHeight)
         {
             obj = _obj;
             halfHeight = _halfHeight;
+            am = _obj.GetComponent<ActorManager>();
         }
     }
 }

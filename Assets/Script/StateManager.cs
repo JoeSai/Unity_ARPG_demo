@@ -18,10 +18,14 @@ public class StateManager : IActorManagerInterface
     public bool isDie;
     public bool isBlocked;
     public bool isDefense;
+    public bool isCounterBack;
+    public bool isCounterBackEnable;
 
     [Header("2nd order states flags")]
     public bool isAllowDefense;
     public bool isImmortal;
+    public bool isCounterBackSuccess;
+    public bool isCounterBackFailure;
 
 
     //public void Test()
@@ -36,7 +40,7 @@ public class StateManager : IActorManagerInterface
 
     private void Update()
     {
-        if(am.ac.GetType() == typeof(PaladinController))
+        if (am.ac.GetType() == typeof(PaladinController))
         {
             isGround = am.ac.CheckState("ground");
             isJump = am.ac.CheckState("jump");
@@ -49,10 +53,14 @@ public class StateManager : IActorManagerInterface
             isBlocked = am.ac.CheckState("blocked");
             //isDefense = am.ac.CheckState("defense1h", "Defense Layer");
             //isAllowDe
+            isCounterBack = am.ac.CheckState("counterBack");
 
             isAllowDefense = isGround || isBlocked;
             isDefense = isAllowDefense && am.ac.CheckState("defense1h", "Defense Layer");
-            isImmortal = isRoll || isJab; 
+            isImmortal = isRoll || isJab;
+
+            isCounterBackSuccess = isCounterBackEnable;
+            isCounterBackFailure = isCounterBack && !isCounterBackEnable;
         }
     }
 
@@ -61,4 +69,5 @@ public class StateManager : IActorManagerInterface
         HP += value;
         HP = Mathf.Clamp(HP, 0, HPMax);
     }
+
 }
