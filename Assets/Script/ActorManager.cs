@@ -46,30 +46,47 @@ public class ActorManager : MonoBehaviour
         sm.isCounterBackEnable = value;
     }
 
-    public void TryDoDamage(WeaponController targetWc)
+    public void TryDoDamage(WeaponController targetWc, bool attackValid, bool counterValid)
     {
         if (sm.isCounterBackSuccess)
         {
             // do nothing
             // 对方被震击
-            targetWc.wm.am.Stuuned();
+            if (counterValid)
+            {
+                targetWc.wm.am.Stuuned();
+            }
         }
         // 盾防失败
         else if(sm.isCounterBackFailure)
         {
-            HirOrDie(false);
+            if (attackValid)
+            {
+                HirOrDie(false);
+            }
         }
         else if (sm.isImmortal)
         {
             
         }else if (sm.isDefense)
         {
+            if (counterValid)
+            {
+                Blocked();
+            }
+            else
+            {
+                //背后被攻击 todo： 不应该后退
+                HirOrDie(true);
+            }
             // Attack should be blocked!
-            Blocked();
         }
         else
         {
-            HirOrDie(true);
+            if (attackValid)
+            {
+                HirOrDie(true);
+            }
         }
     }
     public void HirOrDie(bool doHitAnimation)
