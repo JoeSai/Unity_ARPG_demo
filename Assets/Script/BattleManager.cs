@@ -27,6 +27,7 @@ public class BattleManager : IActorManagerInterface
     {
         WeaponController targetWc = col.GetComponentInParent<WeaponController>();
 
+        //FIXME:am forward != model forward
         GameObject attacker = targetWc.wm.am.gameObject;
         GameObject receiver = am.gameObject;
 
