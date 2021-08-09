@@ -139,4 +139,20 @@ public class ActorManager : MonoBehaviour
             ac.camcon.enabled = false;
         }
     }
+
+    public void TestEcho()
+    {
+        print("Echo Echo");
+    }
+
+    public void LockUnlockActorController(bool value)
+    {
+        //时间轴预览的时候也会调用
+        if (ac)
+        {
+            ac.pi.inputEnable = false;
+            ac.SetBool("lock", value);
+        }
+    }
+
 }

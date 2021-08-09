@@ -13,6 +13,11 @@ public abstract class IRoleController : MonoBehaviour
         anim.SetTrigger(triggerName);
     }
 
+    public void SetBool(string boolName , bool value)
+    {
+        anim.SetBool(boolName, value);
+    }
+
     public bool CheckState(string stateName, string layerName = "Base Layer")
     {
         int layerIndex = anim.GetLayerIndex(layerName);

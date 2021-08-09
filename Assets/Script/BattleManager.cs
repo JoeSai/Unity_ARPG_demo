@@ -44,6 +44,8 @@ public class BattleManager : IActorManagerInterface
         bool counterVallid = (counterAngle1 < 30 && Mathf.Abs(counterAngle2 - 180) < 30);
 
         //print(col.name);
+        //print("attackValid = " + attackValid);
+        //print("counterVallid = " + counterVallid);
         if (col.tag == "Weapon")
         {
             if (attackingAngle1 <= 45)
