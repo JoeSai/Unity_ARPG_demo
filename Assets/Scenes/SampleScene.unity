@@ -453,6 +453,7 @@ MonoBehaviour:
   lockon: 0
   fn: 0
   counterBack: 0
+  action: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -1461,7 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a53ea338ae99f0499d07ba5d5bba1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  am: {fileID: 0}
+  am: {fileID: 110281658}
   eventName: frontStab
   active: 1
 --- !u!1 &1125683971
@@ -2046,6 +2047,7 @@ MonoBehaviour:
   lockon: 0
   fn: 0
   counterBack: 0
+  action: 0
   Dup: 0
   Dright: 0
   Dmag: 0
@@ -2064,6 +2066,7 @@ MonoBehaviour:
   KeyLockon: tab
   KeyFu: left ctrl
   KeyCounterBack: mouse 2
+  KeyAction: e
   KeyJRight: right
   KeyJLeft: left
   KeyJUp: up

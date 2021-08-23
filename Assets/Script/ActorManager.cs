@@ -9,7 +9,7 @@ public class ActorManager : MonoBehaviour
     public WeaponManager wm;
     public StateManager sm;
     public DirectorManager dm;
-    public IActorManagerInterface im;
+    public InteractionManager im;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,8 +23,21 @@ public class ActorManager : MonoBehaviour
         dm = Bind<DirectorManager>(gameObject);
         im = Bind<InteractionManager>(sensor);
 
+        ac.OnAction += DoAction;
     }
 
+    public void DoAction()
+    {
+        if(im.overlapEcastms.Count != 0)
+        {
+            // i should play corresponding timeline here.
+            //print(im.overlapEcastms[0].eventName);
+            if(im.overlapEcastms[0].eventName == "frontStab")
+            {
+                dm.PlayFrontStab("frontStab", this, im.overlapEcastms[0].am);
+            }
+        }
+    }
     //Generics ·ºÐÍ
     private T Bind<T>(GameObject go) where T : IActorManagerInterface
     {

@@ -8,6 +8,10 @@ public abstract class IRoleController : MonoBehaviour
     public Animator anim;
     public IUserInput pi;
     public CameraController camcon;
+
+    public delegate void OnActionDelegaet();
+    public event OnActionDelegaet OnAction;
+
     public void IssueTrigger(string triggerName)
     {
         anim.SetTrigger(triggerName);
@@ -30,5 +34,10 @@ public abstract class IRoleController : MonoBehaviour
         int layerIndex = anim.GetLayerIndex(layerName);
         bool result = anim.GetCurrentAnimatorStateInfo(layerIndex).IsTag(tagName);
         return result;
+    }
+
+    public void InvokeAction()
+    {
+        OnAction.Invoke();
     }
 }

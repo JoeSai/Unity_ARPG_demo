@@ -33,6 +33,7 @@ public class PaladinController : IRoleController
     private bool lockMovingVec = false;
     private bool trackDirection = false;
 
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -144,6 +145,10 @@ public class PaladinController : IRoleController
             }
         }
 
+        if (pi.action)
+        {
+            InvokeAction();
+        }
     }
 
     private void FixedUpdate()
