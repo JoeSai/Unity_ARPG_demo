@@ -63,6 +63,7 @@
     <Compile Include="Assets\DefaultPlayables\TimeDilation\TimeDilationMixerBehaviour.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
     <Compile Include="Assets\Script\ActorManager.cs" />
+    <Compile Include="Assets\DefaultPlayables\MyTest\MoveObjPlayableBehaviour.cs" />
     <Compile Include="Assets\MySuperPlayable\MySuperPlayableBehaviour.cs" />
     <Compile Include="Assets\DefaultPlayables\TransformTween\TransformTweenTrack.cs" />
     <Compile Include="Assets\DefaultPlayables\ScreenFader\ScreenFaderMixerBehaviour.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Assets\Script\JoystickInput.cs" />
     <Compile Include="Assets\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
     <Compile Include="Assets\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
+    <Compile Include="Assets\DefaultPlayables\MyTest\MoveObjPlayableAsset.cs" />
     <Compile Include="Assets\Script\WeaponController.cs" />
     <Compile Include="Assets\DefaultPlayables\Video\VideoPlayableBehaviour.cs" />
     <Compile Include="Assets\Script\IUserInput.cs" />
@@ -114,8 +116,8 @@
     <Compile Include="Assets\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlClip.cs" />
     <Compile Include="Assets\Script\KeyboardInput.cs" />
     <Compile Include="Assets\Script\FSMOnUpdate.cs" />
-    <Compile Include="Assets\DefaultPlayables\MyTest\MoveObjPlayableAsset.cs" />
-    <Compile Include="Assets\DefaultPlayables\MyTest\MoveObjPlayableBehaviour.cs" />
+    <Compile Include="Assets\Script\StudyTest.cs" />
+    <Compile Include="Assets\Script\StudyTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />
