@@ -8,6 +8,7 @@ public class ActorManager : MonoBehaviour
     public BattleManager bm;
     public WeaponManager wm;
     public StateManager sm;
+    public DirectorManager dm;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,6 +19,7 @@ public class ActorManager : MonoBehaviour
         bm = Bind<BattleManager>(sensor);
         wm = Bind<WeaponManager>(model);
         sm = Bind<StateManager>(gameObject);
+        dm = Bind<DirectorManager>(gameObject);
 
     }
 

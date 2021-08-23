@@ -100,6 +100,7 @@
     <Compile Include="Assets\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlMixerBehaviour.cs" />
     <Compile Include="Assets\Script\DummyIUserInput.cs" />
     <Compile Include="Assets\Script\JoystickInput.cs" />
+    <Compile Include="Assets\Script\StudyTest2.cs" />
     <Compile Include="Assets\DefaultPlayables\Video\VideoScriptPlayableTrack.cs" />
     <Compile Include="Assets\DefaultPlayables\TimeDilation\TimeDilationTrack.cs" />
     <Compile Include="Assets\DefaultPlayables\MyTest\MoveObjPlayableAsset.cs" />
@@ -112,12 +113,12 @@
     <Compile Include="Assets\DefaultPlayables\ScreenFader\ScreenFaderBehaviour.cs" />
     <Compile Include="Assets\DefaultPlayables\TransformTween\TransformTweenClip.cs" />
     <Compile Include="Assets\Models\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
+    <Compile Include="Assets\Script\StudyTest.cs" />
     <Compile Include="Assets\Script\LeftArmAnimFix.cs" />
     <Compile Include="Assets\DefaultPlayables\NavMeshAgentControl\NavMeshAgentControlClip.cs" />
     <Compile Include="Assets\Script\KeyboardInput.cs" />
     <Compile Include="Assets\Script\FSMOnUpdate.cs" />
-    <Compile Include="Assets\Script\StudyTest.cs" />
-    <Compile Include="Assets\Script\StudyTest2.cs" />
+    <Compile Include="Assets\Script\DirectorManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Models\Fantasy Chess RPG Character - Arthur\readme.txt" />

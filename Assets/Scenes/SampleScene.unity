@@ -383,6 +383,8 @@ GameObject:
   - component: {fileID: 110281654}
   - component: {fileID: 110281657}
   - component: {fileID: 110281658}
+  - component: {fileID: 110281653}
+  - component: {fileID: 110281659}
   m_Layer: 8
   m_Name: EnemyHandle
   m_TagString: Untagged
@@ -406,6 +408,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!320 &110281653
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110281651}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 5032836910075386214, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 110281658}
+  - key: {fileID: 6652674036006002958, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2722805053155984688, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 15631318}
+  - key: {fileID: 4337492180180691030, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!114 &110281654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,6 +523,24 @@ MonoBehaviour:
   bm: {fileID: 0}
   wm: {fileID: 0}
   sm: {fileID: 0}
+  dm: {fileID: 0}
+--- !u!114 &110281659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110281651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9edef401d3abb418574b7148cb2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  pd: {fileID: 0}
+  frontStab: {fileID: 11400000, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+  attacker: {fileID: 110281658}
+  victim: {fileID: 1529455994}
 --- !u!1 &139417674
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &585678958
 Transform:
   m_ObjectHideFlags: 0
@@ -787,10 +832,12 @@ PlayableDirector:
     value: {fileID: 717356387}
   - key: {fileID: -1704702454139384066, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
     value: {fileID: 705507994}
-  - key: {fileID: -7696384864766554203, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 705507994}
   - key: {fileID: 5032836910075386214, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
     value: {fileID: 1529455994}
+  - key: {fileID: 4337492180180691030, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - cc05085ed76b76b45a6a54cf5f1124d8: {fileID: 110281651}
@@ -1814,7 +1861,9 @@ GameObject:
   - component: {fileID: 1529455993}
   - component: {fileID: 1529455994}
   - component: {fileID: 1529455995}
-  m_Layer: 0
+  - component: {fileID: 1529455996}
+  - component: {fileID: 1529455997}
+  m_Layer: 10
   m_Name: PaladinHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1969,6 +2018,7 @@ MonoBehaviour:
   bm: {fileID: 0}
   wm: {fileID: 0}
   sm: {fileID: 0}
+  dm: {fileID: 0}
 --- !u!114 &1529455995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,6 +2050,48 @@ MonoBehaviour:
   isImmortal: 0
   isCounterBackSuccess: 0
   isCounterBackFailure: 0
+--- !u!320 &1529455996
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529455987}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 5032836910075386214, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6652674036006002958, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2722805053155984688, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4337492180180691030, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &1529455997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529455987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9edef401d3abb418574b7148cb2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  pd: {fileID: 0}
+  frontStab: {fileID: 11400000, guid: 96c1147a08c786549a43307d1710b3e3, type: 2}
+  attacker: {fileID: 1529455994}
+  victim: {fileID: 110281658}
 --- !u!1 &1646169207
 GameObject:
   m_ObjectHideFlags: 0
